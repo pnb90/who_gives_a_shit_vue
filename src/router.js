@@ -6,6 +6,9 @@ import RestroomsNew from './views/RestroomsNew.vue'
 import RestroomsShow from './views/RestroomsShow.vue'
 import RestroomsEdit from './views/RestroomsEdit.vue'
 import Map from './views/Map.vue'
+import Signup from './views/Signup.vue'
+import Login from './views/Login.vue'
+import Logout from './views/Logout.vue'
 
 
 Vue.use(Router)
@@ -20,5 +23,8 @@ export default new Router({
     { path: '/restrooms/:id', name: 'restrooms-show', component: RestroomsShow },
     { path: '/restrooms/:id/edit', name: 'restrooms-edit', component: RestroomsEdit },
     { path: '/map', name: 'restrooms-map', component: Map }
+    { path: '/signup', name: 'signup', component: Signup },
+    { path: '/login', name: 'login', component: Login },
+    { path: '/logout', name: 'logout', component: Logout }
   ]
 })
