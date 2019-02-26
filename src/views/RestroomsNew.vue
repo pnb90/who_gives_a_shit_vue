@@ -1,52 +1,100 @@
 <template>
   <div class="restrooms-new">
-    <h1>New Photo</h1>
-    <div>
-      Name: <input type="text" v-model="newPhotoName">
-      Width: <input type="text" v-model="newPhotoWidth">
-      Height: <input type="text" v-model="newPhotoHeight">
-      <button v-on:click="createPhoto()">Create Photo</button>
-    </div>
-    <h1>All Photos</h1>
-    <div v-for="photo in photos">
-      <h2>{{ photo.name }}</h2>
-      <img v-bind:src="photo.url">
-      <p>Width: {{ photo.width }}</p>
-      <p>Height: {{ photo.height }}</p>
+    <h1>New Restroom</h1>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+    <form v-on:submit.prevent="submit()">
+      <div>
+      Cleanliness: <input v-model="newRestroomName">
+      </div>
+      <div>
+      Uniqueness: <input v-model="newRestroomUniqueness">
+      </div>
+      <div> 
+      Upkeep: <input v-model="newRestroomUpkeep">
+      </div>
+      <div>
+      Toliet Paper Quality: <input v-model="newRestroomTolietPaperQuality">
+      </div>
+      <div>
+      Amenities: <input v-model="newRestroomAmenities">
+      </div>
+      <div>
+      Accessibility: <input v-model="newRestroomAccessibility">
+      </div>
+      <div>
+      Number of Stalls: <input v-model="newRestroomNumberOfStalls">
+      </div>
+      <div>
+      Size: <input v-model="newRestroomSize">
+      </div>
+      <div>
+      Privacy: <input v-model="newRestroomPrivacy">
+      </div>
+      <div>
+      Location: <input v-model="newRestroomLocation">
+      </div>
+      <div>
+      Summary: <input v-model="newRestroomSummary">
+      </div>
+      <div>
+      Overall Rating: <input v-model="newRestroomOverallRating">
+      </div>
+      <input type="submit" value="Rate" name="btn btn-success">
+    </form>
+    
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+var axios = require('axios');
 
 export default {
   data: function() {
     return {
-      photos: [],
-      newPhotoName: "",
-      newPhotoWidth: "",
-      newPhotoHeight: ""
+      restrooms: [],
+      newRestroomCleanliness: "",
+      newRestroomUniqueness: "",
+      newRestroomUpkeep: "",
+      newRestroomTolietPaperQuality: "",
+      newRestroomAmenities: "",
+      newRestroomAccessibility: "",
+      newRestroomNumberOfStalls: "",
+      newRestroomSize: "",
+      newRestroomPrivacy: "",
+      newRestroomLocation: "",
+      newRestroomSummary: "",
+      newRestroomOverallRating: "",
+      errors: []
     };
   },
-  created: function() {
-    axios.get("/api/photos").then(response => {
-      this.photos = response.data;
-    });
-  },
+created: function() {},
   methods: {
-    createPhoto: function() {
+    submit: function() {
+      console.log("Rating flushed");
       var params = {
-        name: this.newPhotoName,
-        width: this.newPhotoWidth,
-        height: this.newPhotoHeight
-      };
-      axios.post("/api/photos", params).then(response => {
-        this.photos.push(response.data);
-        this.newPhotoName = "";
-        this.newPhotoWidth = "";
-        this.newPhotoHeight = "";
-      });
+                    cleanliness: this.newRestroomCleanliness,
+                    uniqueness: this.newRestroomUniqueness,
+                    upkeep: this.newRestroomUpkeep,
+                    toliet_paper_quality: this.newRestroomTolietPaperQuality,
+                    amenities: this.newRestroomAmenities,
+                    accessibility: this.newRestroomAccessibility,
+                    number_of_stalls: this.newRestroomNumberOfStalls,
+                    size: this.newRestroomSize,
+                    privacy: this.newRestroomPrivacy,
+                    location: this.newRestroomLocation,
+                    summary: this.newRestroomSummary,
+                    overall_rating: this.newRestroomOverallRating
+                    };
+      axios.post("/api/restrooms", params)
+        .then(response => {
+          console.log("Rated", response.data);
+          this.$router.push("/");
+        }).catch(error => {
+          this.errors = error.response.data.errors;
+        });
     }
   }
 };
