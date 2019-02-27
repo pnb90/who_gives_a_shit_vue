@@ -1,7 +1,24 @@
 <template>
   <div class="restrooms-show">
     <h1>{{ restroom.location }}</h1>
-    <h2>{{ restroom.reviews.id}}</h2>
+    <div v-for="review in restroom.reviews">
+      <div> id: {{ review.id }}</div>
+      <div> cleanliness: {{ review.cleanliness }}</div>
+      <div> uniqueness: {{ review.uniqueness }}</div>
+      <div> upkeep: {{ review.upkeep }}</div>
+      <div> toilet_paper_quality: {{ review.toilet_paper_quality }}</div>
+      <div> amenities: {{ review.amenities }}</div>
+      <div> number_of_stalls: {{ review.number_of_stalls }}</div>
+      <div> size: {{ review.size }}</div>
+      <div> privacy: {{ review.privacy }}</div>
+      <div> summary: {{ review.summary }}</div>
+      <div> overall_rating: {{ review.overall_rating }}</div>
+      <div> accessibility: {{ review.accessibility }}</div>
+      <p></p>
+    </div>
+
+
+
 <!--     <h4>Id: {{ restroom.id }}</h4> 
     <h4>Cleanliness: {{ restroom.cleanliness }}</h4>
     <h4>Uniqueness: {{ restroom.uniqueness }}</h4>
