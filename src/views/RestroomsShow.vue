@@ -2,7 +2,7 @@
   <div class="restrooms-show">
     <h1>{{ restroom.location }}</h1>
     <h2>{{ restroom.reviews.id}}</h2>
-<!--     <h4>Id: {{ restroom.id }}</h4> 
+    <h4>Id: {{ restroom.id }}</h4> 
     <h4>Cleanliness: {{ restroom.cleanliness }}</h4>
     <h4>Uniqueness: {{ restroom.uniqueness }}</h4>
     <h4>Upkeep: {{ restroom.upkeep }}</h4>
@@ -14,7 +14,7 @@
     <h4>Location: {{ restroom.location }}</h4>
     <h4>Summary: {{ restroom.summary }}</h4>
     <h4>Overall Rating: {{ restroom.overall_rating }}</h4>
-    <h4>Accessibility: {{ restroom.accessibility }}</h4> -->
+    <h4>Accessibility: {{ restroom.accessibility }}</h4>
       <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
       <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
   </div>
