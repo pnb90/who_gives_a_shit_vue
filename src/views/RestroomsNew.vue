@@ -8,6 +8,7 @@
       
       <form v-on:submit.prevent="submit()">
         <div>
+        
         Cleanliness: <input v-model="newRestroomName">
         </div>
         <div>
