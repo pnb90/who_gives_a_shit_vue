@@ -16,24 +16,8 @@
       <div> accessibility: {{ review.accessibility }}</div>
       <p></p>
     </div>
-
-
-
-<!--     <h4>Id: {{ restroom.id }}</h4> 
-    <h4>Cleanliness: {{ restroom.cleanliness }}</h4>
-    <h4>Uniqueness: {{ restroom.uniqueness }}</h4>
-    <h4>Upkeep: {{ restroom.upkeep }}</h4>
-    <h4>Toilet Paper Quality: {{ restroom.toilet_paper_quality }}</h4>
-    <h4>Amenities: {{ restroom.amenities }}</h4>
-    <h4>Number of Stalls: {{ restroom.number_of_stalls }}</h4>
-    <h4>Size: {{ restroom.size }}</h4>
-    <h4>Privacy: {{ restroom.privacy }}</h4>
-    <h4>Location: {{ restroom.location }}</h4>
-    <h4>Summary: {{ restroom.summary }}</h4>
-    <h4>Overall Rating: {{ restroom.overall_rating }}</h4>
-    <h4>Accessibility: {{ restroom.accessibility }}</h4> -->
-      <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
-      <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
+    <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
+    <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
   </div>
 </template>
 
