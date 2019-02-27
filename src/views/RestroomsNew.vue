@@ -4,49 +4,54 @@
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
-    <form v-on:submit.prevent="submit()">
-      <div>
-      Cleanliness: <input v-model="newRestroomName">
-      </div>
-      <div>
-      Uniqueness: <input v-model="newRestroomUniqueness">
-      </div>
-      <div> 
-      Upkeep: <input v-model="newRestroomUpkeep">
-      </div>
-      <div>
-      Toliet Paper Quality: <input v-model="newRestroomTolietPaperQuality">
-      </div>
-      <div>
-      Amenities: <input v-model="newRestroomAmenities">
-      </div>
-      <div>
-      Accessibility: <input v-model="newRestroomAccessibility">
-      </div>
-      <div>
-      Number of Stalls: <input v-model="newRestroomNumberOfStalls">
-      </div>
-      <div>
-      Size: <input v-model="newRestroomSize">
-      </div>
-      <div>
-      Privacy: <input v-model="newRestroomPrivacy">
-      </div>
-      <div>
-      Location: <input v-model="newRestroomLocation">
-      </div>
-      <div>
-      Summary: <input v-model="newRestroomSummary">
-      </div>
-      <div>
-      Overall Rating: <input v-model="newRestroomOverallRating">
-      </div>
-      <input type="submit" value="Rate" name="btn btn-success">
-    </form>
+    <div class="container">
+      
+      <form v-on:submit.prevent="submit()">
+        <div>
+        Cleanliness: <input v-model="newRestroomName">
+        </div>
+        <div>
+        Uniqueness: <input v-model="newRestroomUniqueness">
+        </div>
+        <div> 
+        Upkeep: <input v-model="newRestroomUpkeep">
+        </div>
+        <div>
+        Toliet Paper Quality: <input v-model="newRestroomTolietPaperQuality">
+        </div>
+        <div>
+        Amenities: <input v-model="newRestroomAmenities">
+        </div>
+        <div>
+        Accessibility: <input v-model="newRestroomAccessibility">
+        </div>
+        <div>
+        Number of Stalls: <input v-model="newRestroomNumberOfStalls">
+        </div>
+        <div>
+        Size: <input v-model="newRestroomSize">
+        </div>
+        <div>
+        Privacy: <input v-model="newRestroomPrivacy">
+        </div>
+        <div>
+        Location: <input v-model="newRestroomLocation">
+        </div>
+        <div>
+        Summary: <input v-model="newRestroomSummary">
+        </div>
+        <div>
+        Overall Rating: <input v-model="newRestroomOverallRating">
+        </div>
+        <input type="submit" value="Rate" name="btn btn-success">
+      </form>
+    </div>
     
     </div>
-  </div>
 </template>
+<style>
+
+</style>
 
 <script>
 var axios = require('axios');
@@ -55,6 +60,7 @@ export default {
   data: function() {
     return {
       restrooms: [],
+      newRestroomName: "",
       newRestroomCleanliness: "",
       newRestroomUniqueness: "",
       newRestroomUpkeep: "",
