@@ -1,7 +1,7 @@
 <template>
   <div class="restrooms-index">
     <h1>All Restrooms</h1>
-    <div v-for="restroom in Restrooms">
+    <div v-for="restroom in restrooms">
       <h2>{{ restroom.name }}</h2>
       <img v-bind:src="restroom.url">
       <p>Width: {{ restroom.width }}</p>
