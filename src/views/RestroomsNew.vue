@@ -5,10 +5,8 @@
       <li v-for="error in errors">{{ error }}</li>
     </ul>
     <div class="container">
-      
       <form v-on:submit.prevent="submit()">
         <div>
-        
         Cleanliness: <input v-model="newRestroomName">
         </div>
         <div>
@@ -36,9 +34,6 @@
         Privacy: <input v-model="newRestroomPrivacy">
         </div>
         <div>
-        Location: <input v-model="newRestroomLocation">
-        </div>
-        <div>
         Summary: <input v-model="newRestroomSummary">
         </div>
         <div>
@@ -47,8 +42,7 @@
         <input type="submit" value="Rate" name="btn btn-success">
       </form>
     </div>
-    
-    </div>
+  </div>
 </template>
 <style>
 
