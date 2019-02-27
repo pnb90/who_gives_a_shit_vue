@@ -1,25 +1,25 @@
 <template>
   <div class="restrooms-edit">
-    <h1>New Photo</h1>
+    <h1>Edit Restroom</h1>
     <div>
-      Name: <input type="text" v-model="newPhotoName">
-      Width: <input type="text" v-model="newPhotoWidth">
-      Height: <input type="text" v-model="newPhotoHeight">
-      <button v-on:click="createPhoto()">Create Photo</button>
+      Name: <input type="text" v-model="newRestroomName">
+      Width: <input type="text" v-model="newRestroomWidth">
+      Height: <input type="text" v-model="newRestroomHeight">
+      <button v-on:click="createRestroom()">Create Restroom</button>
     </div>
-    <h1>All Photos</h1>
-    <div v-for="photo in photos">
-      <h2>{{ photo.name }}</h2>
-      <img v-bind:src="photo.url">
-      <button v-on:click="showPhoto(photo)">Show more</button>
-      <div v-if="currentPhoto === photo">
-        <p>Width: {{ photo.width }}</p>
-        <p>Height: {{ photo.height }}</p>
+    <h1>All restrooms</h1>
+    <div v-for="restroom in restrooms">
+      <h2>{{ restroom.name }}</h2>
+      <img v-bind:src="restroom.url">
+      <button v-on:click="showRestroom(restroom)">Show more</button>
+      <div v-if="currentRestroom === restroom">
+        <p>Width: {{ restroom.width }}</p>
+        <p>Height: {{ restroom.height }}</p>
         <div>
-          Name: <input type="text" v-model="photo.name">
-          Width: <input type="text" v-model="photo.width">
-          Height: <input type="text" v-model="photo.height">
-          <button v-on:click="updatePhoto(photo)">Update Photo</button>
+          Name: <input type="text" v-model="restroom.name">
+          Width: <input type="text" v-model="restroom.width">
+          Height: <input type="text" v-model="restroom.height">
+          <button v-on:click="updaterestroom(restroom)">Update restroom</button>
         </div>
       </div>
     </div>
