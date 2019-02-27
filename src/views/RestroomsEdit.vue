@@ -1,82 +1,113 @@
 <template>
   <div class="restrooms-edit">
-    <h1>New Photo</h1>
-    <div>
-      Name: <input type="text" v-model="newPhotoName">
-      Width: <input type="text" v-model="newPhotoWidth">
-      Height: <input type="text" v-model="newPhotoHeight">
-      <button v-on:click="createPhoto()">Create Photo</button>
-    </div>
-    <h1>All Photos</h1>
-    <div v-for="photo in photos">
-      <h2>{{ photo.name }}</h2>
-      <img v-bind:src="photo.url">
-      <button v-on:click="showPhoto(photo)">Show more</button>
-      <div v-if="currentPhoto === photo">
-        <p>Width: {{ photo.width }}</p>
-        <p>Height: {{ photo.height }}</p>
+    <h1>Edit Restroom</h1>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li> 
+    </ul>
+    <div class="container">
+      
+    <form v-on:submit.prevent="submit()">
         <div>
-          Name: <input type="text" v-model="photo.name">
-          Width: <input type="text" v-model="photo.width">
-          Height: <input type="text" v-model="photo.height">
-          <button v-on:click="updatePhoto(photo)">Update Photo</button>
+          Cleanliness: <input v-model="restroom.Cleanliness">
         </div>
-      </div>
+        <div>
+          Uniqueness: <input v-model="restroom.uniqueness">
+        </div>
+        <div>
+          Upkeep: <input v-model="restroom.upkeep">
+        </div>
+        <div>
+          Toliet_paper_quality: <input v-model="restroom.toliet_paper_quality">
+        </div>
+        <div>
+          Amenities: <input v-model="restroom.amenities">
+        </div>
+        <div>
+          Accessibility: <input v-model="restroom.accessibility">
+        </div>
+        <div>
+          Number of Stalls: <input v-model="restroom.number_of_stalls">
+        </div>
+        <div>
+          Size: <input v-model="restroom.size">
+        </div>
+        <div>
+          Privacy: <input v-model="restroom.privacy">
+        </div>
+        <div>
+          Location: <input v-model="restroom.location">
+        </div>
+        <div>
+          Summary: <input v-model="restroom.summary">
+        </div>
+        <div>
+          Overall Rating: <input v-model="restroom.overall_rating">
+        </div>
+        <input type="submit" value="Update" class="btn btn-primary">
+     </form>
     </div>
   </div>
 </template>
 
-<script>
-import axios from "axios";
+<style>
+  
+</style>
 
-export default {
-  data: function() {
-    return {
-      photos: [],
-      currentPhoto: {},
-            newPhotoName: "",
-            newPhotoWidth: "",
-            newPhotoHeight: ""
-          };
-        },
-  created: function() {
-    axios.get("/api/photos").then(response => {
-      this.photos = response.data;
-    });
-  },
-  methods: {
-    createPhoto: function() {
-      var params = {
-        name: this.newPhotoName,
-        width: this.newPhotoWidth,
-        height: this.newPhotoHeight
+<script>
+var axios = require('axios');
+
+  export default {
+    data: function() {
+      return {
+        restroom: {
+                  cleanliness: "",
+                  uniqueness: "",
+                  upkeep: "",
+                  toliet_paper_quality: "",
+                  amenities: "",
+                  accessibility: "",
+                  number_of_stalls: "",
+                  size: "",
+                  privacy: "",
+                  location: "",
+                  summary: "",
+                  overall_rating: ""
+                },
+        errors: []
       };
-      axios.post("/api/photos", params).then(response => {
-        this.photos.push(response.data);
-        this.newPhotoName = "";
-        this.newPhotoWidth = "";
-        this.newPhotoHeight = "";
+    },
+    created: function() {
+      axios.get("/api/restrooms/" + this.$route.params.id)
+      .then(response => {
+        console.log(response.data);
+        this.restroom = response.data;
       });
     },
-    showPhoto: function(photo) {
-      if (this.currentPhoto === photo) {
-        this.currentPhoto = {};
-      } else {
-        this.currentPhoto = photo;
+    methods: {
+      submit: function() {
+        var params = {
+                      cleanliness: this.restrooms.cleanliness,
+                      uniqueness: this.restrooms.uniqueness,
+                      upkeep: this.restrooms.upkeep,
+                      toliet_paper_quality: this.restrooms.toliet_paper_quality,
+                      amenities: this.restrooms.amenities,
+                      accessibility: this.restrooms.accessibility,
+                      number_of_stalls: this.restrooms.number_of_stalls,
+                      size: this.restrooms.size,
+                      privacy: this.restrooms.privacy,
+                      location: this.restrooms.location,
+                      summary: this.restrooms.summary,
+                      overall_rating: this.restrooms.overall_rating
+                      };
+
+
+        axios.patch("/api/restrooms/" + this.restroom.id, params)
+          .then(response => {
+           this.$router.push("/restrooms/" + this.restroom.id);
+          }).catch(error => {
+          this.errors = error.response.data.errors;
+          });
       }
-    },
-    updatePhoto: function(photo) {
-      var params = {
-        name: photo.name,
-        width: photo.width,
-        height: photo.height
-      };
-      axios
-        .patch("/api/photos/" + photo.id, params)
-        .then(response => {
-          this.currentPhoto = {};
-        });
     }
   }
-};
 </script>
