@@ -1,22 +1,23 @@
 <template>
   <div class="restrooms-show">
     <h1>{{ restroom.location }}</h1>
-    <h2>{{ restroom.reviews.id}}</h2>
-    <h4>Id: {{ restroom.id }}</h4> 
-    <h4>Cleanliness: {{ restroom.cleanliness }}</h4>
-    <h4>Uniqueness: {{ restroom.uniqueness }}</h4>
-    <h4>Upkeep: {{ restroom.upkeep }}</h4>
-    <h4>Toilet Paper Quality: {{ restroom.toilet_paper_quality }}</h4>
-    <h4>Amenities: {{ restroom.amenities }}</h4>
-    <h4>Number of Stalls: {{ restroom.number_of_stalls }}</h4>
-    <h4>Size: {{ restroom.size }}</h4>
-    <h4>Privacy: {{ restroom.privacy }}</h4>
-    <h4>Location: {{ restroom.location }}</h4>
-    <h4>Summary: {{ restroom.summary }}</h4>
-    <h4>Overall Rating: {{ restroom.overall_rating }}</h4>
-    <h4>Accessibility: {{ restroom.accessibility }}</h4>
-      <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
-      <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
+    <div v-for="review in restroom.reviews">
+      <div> id: {{ review.id }}</div>
+      <div> cleanliness: {{ review.cleanliness }}</div>
+      <div> uniqueness: {{ review.uniqueness }}</div>
+      <div> upkeep: {{ review.upkeep }}</div>
+      <div> toilet_paper_quality: {{ review.toilet_paper_quality }}</div>
+      <div> amenities: {{ review.amenities }}</div>
+      <div> number_of_stalls: {{ review.number_of_stalls }}</div>
+      <div> size: {{ review.size }}</div>
+      <div> privacy: {{ review.privacy }}</div>
+      <div> summary: {{ review.summary }}</div>
+      <div> overall_rating: {{ review.overall_rating }}</div>
+      <div> accessibility: {{ review.accessibility }}</div>
+      <p></p>
+    </div>
+    <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
+    <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
   </div>
 </template>
 
