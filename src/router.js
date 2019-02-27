@@ -22,7 +22,7 @@ export default new Router({
     { path: '/restrooms/new', name: 'restrooms-new', component: RestroomsNew },
     { path: '/restrooms/:id', name: 'restrooms-show', component: RestroomsShow },
     { path: '/restrooms/:id/edit', name: 'restrooms-edit', component: RestroomsEdit },
-    { path: '/map', name: 'restrooms-map', component: Map }
+    { path: '/map', name: 'restrooms-map', component: Map },
     { path: '/signup', name: 'signup', component: Signup },
     { path: '/login', name: 'login', component: Login },
     { path: '/logout', name: 'logout', component: Logout }
