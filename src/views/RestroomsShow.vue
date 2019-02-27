@@ -1,75 +1,68 @@
 <template>
   <div class="restrooms-show">
-    <h1>New Restroom</h1>
-    <div>
-      Name: <input type="text" v-model="newRestroomName">
-      Width: <input type="text" v-model="newRestroomWidth">
-      Height: <input type="text" v-model="newRestroomHeight">
-      <button v-on:click="createRestroom()">Create Restroom</button>
-    </div>
-    <h1>All restrooms</h1>
-    <div v-for="restroom in restrooms">
-      <h2>{{ restroom.name }}</h2>
-      <img v-bind:src="restroom.url">
-      <button v-on:click="showRestroom(restroom)">Show more</button>
-      <div v-if="currentrestroom === restroom">
-        <p>Width: {{ restroom.width }}</p>
-        <p>Height: {{ restroom.height }}</p>
-      </div>
-    </div>
+    <h1>{{ restroom.location }}</h1>
+    <h2>{{ restroom.reviews.id}}</h2>
+<!--     <h4>Id: {{ restroom.id }}</h4> 
+    <h4>Cleanliness: {{ restroom.cleanliness }}</h4>
+    <h4>Uniqueness: {{ restroom.uniqueness }}</h4>
+    <h4>Upkeep: {{ restroom.upkeep }}</h4>
+    <h4>Toilet Paper Quality: {{ restroom.toilet_paper_quality }}</h4>
+    <h4>Amenities: {{ restroom.amenities }}</h4>
+    <h4>Number of Stalls: {{ restroom.number_of_stalls }}</h4>
+    <h4>Size: {{ restroom.size }}</h4>
+    <h4>Privacy: {{ restroom.privacy }}</h4>
+    <h4>Location: {{ restroom.location }}</h4>
+    <h4>Summary: {{ restroom.summary }}</h4>
+    <h4>Overall Rating: {{ restroom.overall_rating }}</h4>
+    <h4>Accessibility: {{ restroom.accessibility }}</h4> -->
+      <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
+      <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
   </div>
 </template>
 
+<style>
+  
+</style>
 <script>
-import axios from "axios";
+  var axios = require('axios')
 
-export default {
-  data: function() {
-    return {
-      restrooms: [],
-      currentRestroom: {},
-      newRestroomName: "",
-      newRestroomWidth: "",
-      newRestroomHeight: ""
-    };
-  },
-  created: function() {
-       axios.get("/api/restrooms")
-       .then(response => {
-          this.restrooms = response.data;
-        });
+  export default {
+    data: function() {
+      return {
+        restroom: {
+                    location: "",
+                    reviews: {
+                              id: "",
+                              cleanliness: "",
+                              uniqueness: "",
+                              upkeep: "",
+                              toilet_paper_quality: "",
+                              amenities: "",
+                              number_of_stalls: "",
+                              size: "",
+                              privacy: "",
+                              summary: "",
+                              overall_rating: "",
+                              accessibility: ""     
+                              }
+                  }
+        };
       },
-  methods: {
-    createrestroom: function() {
-      var params = {
-        name: this.newRestroomName,
-        width: this.newRestroomWidth,
-        height: this.newRestroomHeight
-      };
-      axios.post("/api/restrooms", params)
-      .then(response => {
-        this.restrooms.push(response.data);
-        this.newRestroomName = "";
-        this.newRestroomWidth = "";
-        this.newRestroomHeight = "";
-      });
-    },
-    showRestroom: function(restroom) {
-      if (this.currentrestroom === restroom) {
-        this.currentRestroom = {};
-      } else {
-        this.currentRestroom = restroom;
-      }
-    },
-    destroyRestroom: function(photo) {
-      axios
-        .delete("/api/restrooms/" + restroom.id)
+    created: function() {
+      axios.get("/api/restrooms/" + this.$route.params.id)
         .then(response => {
-          var index = this.restrooms.indexOf(photo);
-          this.restrooms.splice(index, 1);
+          console.log(response.data);
+          this.restroom = response.data;
         });
+    },
+    methods: {
+      destroyRestroom: function() {
+        axios.delete("/api/restrooms/" + this.restroom.id)
+          .then(response => {
+            console.log("Success", response.data);
+            this.$router.push("/");
+          });
+      }
     }
-
   }
-};
 </script>
