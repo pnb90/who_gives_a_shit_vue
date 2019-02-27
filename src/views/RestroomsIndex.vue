@@ -1,29 +1,36 @@
 <template>
   <div class="restrooms-index">
-    <h1>All Restrooms</h1>
-    <div v-for="restroom in restrooms">
-      <h2>{{ restroom.name }}</h2>
-      <img v-bind:src="restroom.url">
-      <p>Width: {{ restroom.width }}</p>
-      <p>Height: {{ restroom.height }}</p>
-    </div>
+    <h1> All Restrooms </h1>
+      <div class="row">
+        <div class="col-md-4" v-for="restroom in restrooms">
+          <router-link v-bind:to="'/restrooms/' + restroom.id">
+            <div class="card">
+              <h2 class="card-title"> {{ restroom.location }}</h2>
+            </div>
+          </router-link>
+        </div>
+      </div>
   </div>
 </template>
 
+<style>
+</style>
+
 <script>
-import axios from "axios";
+var axios = require("axios");
 
 export default {
   data: function() {
     return {
-      restrooms: []
+      restrooms: [],
+      currentRestroom: {}
     };
   },
-  created: function() {
+  created: function() { 
     axios.get("/api/restrooms")
     .then(response => {
-      this.restrooms = response.data;
-    });
+        this.restrooms = response.data;
+      });
   },
   methods: {}
 };
