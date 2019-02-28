@@ -2,20 +2,12 @@
   <div class="restrooms-show">
     <div id="map"></div>
     <h1>{{ restroom.location }}</h1>
-    <div v-for="review in restroom.reviews">
-      <div> id: {{ review.id }}</div>
-      <div> cleanliness: {{ review.cleanliness }}</div>
-      <div> uniqueness: {{ review.uniqueness }}</div>
-      <div> upkeep: {{ review.upkeep }}</div>
-      <div> toilet_paper_quality: {{ review.toilet_paper_quality }}</div>
-      <div> amenities: {{ review.amenities }}</div>
-      <div> number_of_stalls: {{ review.number_of_stalls }}</div>
-      <div> size: {{ review.size }}</div>
-      <div> privacy: {{ review.privacy }}</div>
-      <div> summary: {{ review.summary }}</div>
-      <div> overall_rating: {{ review.overall_rating }}</div>
-      <div> accessibility: {{ review.accessibility }}</div>
-      <p></p>
+    <div class="row">
+        <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
+          <router-link v-bind:to="'/reviews/' + review.id">
+            <div>Rating: {{ review.overall_rating }}</div>
+          </router-link>
+        </div>
     </div>
     <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
     <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
@@ -68,7 +60,9 @@
 </template>
 
 <style>
-  
+  .col-md-4 {
+    height: 75px;
+  }
 </style>
 <script>
   var axios = require('axios')
@@ -122,7 +116,7 @@
         axios.delete("/api/restrooms/" + this.restroom.id)
           .then(response => {
             console.log("Success", response.data);
-            this.$router.push("/");
+            this.$router.push("/restrooms");
           });
       },
       submit: function() {
