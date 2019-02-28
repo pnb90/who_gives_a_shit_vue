@@ -2,6 +2,8 @@
   <div class="restrooms-index">
     <div id="map"></div>
     <h1> All Restrooms </h1>
+    <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
+    <p></p>
       <div class="row">
         <div class="col-md-4" v-for="restroom in restrooms">
           <router-link v-bind:to="'/restrooms/' + restroom.id">
