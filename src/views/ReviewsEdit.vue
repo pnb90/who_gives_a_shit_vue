@@ -70,6 +70,7 @@ var axios = require('axios');
                   summary: "",
                   overall_rating: ""
                 },
+                restroom: [],
         errors: []
       };
     },
@@ -83,24 +84,24 @@ var axios = require('axios');
     methods: {
       submit: function() {
         var params = {
-                      cleanliness: this.reviews.cleanliness,
-                      uniqueness: this.reviews.uniqueness,
-                      upkeep: this.reviews.upkeep,
-                      toliet_paper_quality: this.reviews.toliet_paper_quality,
-                      amenities: this.reviews.amenities,
-                      accessibility: this.reviews.accessibility,
-                      number_of_stalls: this.reviews.number_of_stalls,
-                      size: this.reviews.size,
-                      privacy: this.reviews.privacy,
-                      location: this.reviews.location,
-                      summary: this.reviews.summary,
-                      overall_rating: this.reviews.overall_rating
+                      cleanliness: this.review.cleanliness,
+                      uniqueness: this.review.uniqueness,
+                      upkeep: this.review.upkeep,
+                      toliet_paper_quality: this.review.toliet_paper_quality,
+                      amenities: this.review.amenities,
+                      accessibility: this.review.accessibility,
+                      number_of_stalls: this.review.number_of_stalls,
+                      size: this.review.size,
+                      privacy: this.review.privacy,
+                      location: this.review.location,
+                      summary: this.review.summary,
+                      overall_rating: this.review.overall_rating
                       };
 
 
-        axios.patch("/api/reviews/" + this.restroom.id, params)
+        axios.patch("/api/reviews/" + this.review.id, params)
           .then(response => {
-           this.$router.push("/reviews/" + this.restroom.id);
+           this.$router.push("/reviews/" + this.review.id);
           }).catch(error => {
           this.errors = error.response.data.errors;
           });
