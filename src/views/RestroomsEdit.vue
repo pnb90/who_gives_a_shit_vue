@@ -7,7 +7,7 @@
     <div class="container">
       
     <form v-on:submit.prevent="submit()">
-        <div>
+<!--         <div>
           Cleanliness: <input v-model="restroom.Cleanliness">
         </div>
         <div>
@@ -33,16 +33,16 @@
         </div>
         <div>
           Privacy: <input v-model="restroom.privacy">
-        </div>
+        </div> -->
         <div>
           Location: <input v-model="restroom.location">
         </div>
-        <div>
-          Summary: <input v-model="restroom.summary">
-        </div>
+<!--         <div>
+          Summary: <input v-model="restroom.summary"> -->
+<!--         </div>
         <div>
           Overall Rating: <input v-model="restroom.overall_rating">
-        </div>
+        </div> -->
         <input type="submit" value="Update" class="btn btn-primary">
      </form>
     </div>
@@ -60,18 +60,7 @@ var axios = require('axios');
     data: function() {
       return {
         restroom: {
-                  cleanliness: "",
-                  uniqueness: "",
-                  upkeep: "",
-                  toliet_paper_quality: "",
-                  amenities: "",
-                  accessibility: "",
-                  number_of_stalls: "",
-                  size: "",
-                  privacy: "",
-                  location: "",
-                  summary: "",
-                  overall_rating: ""
+                  location: ""
                 },
         errors: []
       };
@@ -86,18 +75,7 @@ var axios = require('axios');
     methods: {
       submit: function() {
         var params = {
-                      cleanliness: this.restrooms.cleanliness,
-                      uniqueness: this.restrooms.uniqueness,
-                      upkeep: this.restrooms.upkeep,
-                      toliet_paper_quality: this.restrooms.toliet_paper_quality,
-                      amenities: this.restrooms.amenities,
-                      accessibility: this.restrooms.accessibility,
-                      number_of_stalls: this.restrooms.number_of_stalls,
-                      size: this.restrooms.size,
-                      privacy: this.restrooms.privacy,
-                      location: this.restrooms.location,
-                      summary: this.restrooms.summary,
-                      overall_rating: this.restrooms.overall_rating
+                      location: this.restroom.location
                       };
 
 

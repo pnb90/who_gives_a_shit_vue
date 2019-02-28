@@ -7,7 +7,7 @@
     <div class="container">
       <form v-on:submit.prevent="submit()">
         <div>
-        Cleanliness: <input v-model="newReviewName">
+        Cleanliness: <input v-model="newReviewCleanliness">
         </div>
         <div>
         Uniqueness: <input v-model="newReviewUniqueness">
