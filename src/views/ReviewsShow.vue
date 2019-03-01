@@ -1,16 +1,16 @@
 <template>
   <div class="reviews-show">
-      <div> cleanliness: {{ review.cleanliness }}</div>
-      <div> uniqueness: {{ review.uniqueness }}</div>
-      <div> upkeep: {{ review.upkeep }}</div>
-      <div> toilet_paper_quality: {{ review.toilet_paper_quality }}</div>
-      <div> amenities: {{ review.amenities }}</div>
-      <div> number_of_stalls: {{ review.number_of_stalls }}</div>
-      <div> size: {{ review.size }}</div>
-      <div> privacy: {{ review.privacy }}</div>
-      <div> summary: {{ review.summary }}</div>
-      <div v-on:click="totalRatings()"> overall_rating: {{ review.overall_rating }}</div>
-      <div> accessibility: {{ review.accessibility }}</div>
+      <div> Cleanliness <star-rating v-model="review.cleanliness" read-only></star-rating></div>
+      <div> Uniqueness <star-rating v-model="review.uniqueness" read-only></star-rating></div>
+      <div> Upkeep <star-rating v-model="review.upkeep" read-only></star-rating></div>
+      <div> Toilet Paper Quality <star-rating v-model="review.toilet_paper_quality" read-only></star-rating></div>
+      <div> Amenities <star-rating v-model="review.amenities" read-only></star-rating></div>
+      <div> Number of Stalls <star-rating v-model="review.number_of_stalls" read-only></star-rating></div>
+      <div> Size <star-rating v-model="review.size" read-only></star-rating></div>
+      <div> Privacy <star-rating v-model="review.privacy" read-only></star-rating></div>
+      <div> Accessibility <star-rating v-model="review.accessibility" read-only></star-rating></div>
+      <div> Overall Rating <star-rating v-model="review.overall_rating" read-only></star-rating></div>
+      <div> Summary: {{ review.summary }}</div>
       <router-link :to=" '/reviews/' + review.id + '/edit' " class="btn btn-warning">Edit</router-link>
     <button v-on:click="destroyReview()" class="btn btn-danger">Delete</button>
   </div>
@@ -26,17 +26,17 @@
     data: function() {
       return {
               review: {
-                        cleanliness: "",
-                        uniqueness: "",
-                        upkeep: "",
-                        toilet_paper_quality: "",
-                        amenities: "",
-                        number_of_stalls: "",
-                        size: "",
-                        privacy: "",
+                        cleanliness: 0,
+                        uniqueness: 0,
+                        upkeep: 0,
+                        toilet_paper_quality: 0,
+                        amenities: 0,
+                        number_of_stalls: 0,
+                        size: 0,
+                        privacy: 0,
                         summary: "",
-                        overall_rating: "",
-                        accessibility: ""     
+                        overall_rating: 0,
+                        accessibility: 0     
                         }
         };
       },

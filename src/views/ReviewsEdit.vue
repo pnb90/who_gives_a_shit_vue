@@ -5,43 +5,39 @@
       <li v-for="error in errors">{{ error }}</li> 
     </ul>
     <div class="container">
-      
-    <form v-on:submit.prevent="submit()">
+      <form v-on:submit.prevent="submit()">
         <div>
-          Cleanliness: <input v-model="review.cleanliness">
+        Cleanliness: <star-rating v-bind:star-size="25" v-model="review.cleanliness"></star-rating>
         </div>
         <div>
-          Uniqueness: <input v-model="review.uniqueness">
+        Uniqueness: <star-rating v-bind:star-size="25" v-model="review.uniqueness"></star-rating> 
+        </div>
+        <div> 
+        Upkeep: <star-rating v-bind:star-size="25" v-model="review.upkeep"></star-rating> 
         </div>
         <div>
-          Upkeep: <input v-model="review.upkeep">
+        Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="review.toilet_paper_quality"></star-rating> 
         </div>
         <div>
-          Toliet_paper_quality: <input v-model="review.toilet_paper_quality">
+        Amenities: <star-rating v-bind:star-size="25" v-model="review.amenities"></star-rating> 
         </div>
         <div>
-          Amenities: <input v-model="review.amenities">
+        Accessibility: <star-rating v-bind:star-size="25" v-model="review.accessibility"></star-rating> 
         </div>
         <div>
-          Accessibility: <input v-model="review.accessibility">
+        Number of Stalls: <star-rating v-bind:star-size="25" v-model="review.number_of_stalls"></star-rating> 
         </div>
         <div>
-          Number of Stalls: <input v-model="review.number_of_stalls">
+        Size: <star-rating v-bind:star-size="25" v-model="review.size"></star-rating> 
         </div>
         <div>
-          Size: <input v-model="review.size">
+        Privacy: <star-rating v-bind:star-size="25" v-model="review.privacy"></star-rating> 
         </div>
         <div>
-          Privacy: <input v-model="review.privacy">
+        Summary: <input type="text" v-model="review.summary">
         </div>
-        <div>
-          Summary: <input v-model="review.summary">
-        </div>
-        <div>
-          Overall Rating: <input v-model="review.overall_rating">
-        </div>
-        <input type="submit" value="Update" class="btn btn-primary">
-     </form>
+        <input type="submit" v-on:click="totalRatings()" value="Rate" class="btn btn-primary">
+      </form>
     </div>
   </div>
 </template>
@@ -57,18 +53,18 @@ var axios = require('axios');
     data: function() {
       return {
         review: {
-                  cleanliness: "",
-                  uniqueness: "",
-                  upkeep: "",
-                  toliet_paper_quality: "",
-                  amenities: "",
-                  accessibility: "",
-                  number_of_stalls: "",
-                  size: "",
-                  privacy: "",
+                  cleanliness: 0,
+                  uniqueness: 0,
+                  upkeep: 0,
+                  toliet_paper_quality: 0,
+                  amenities: 0,
+                  accessibility: 0,
+                  number_of_stalls: 0,
+                  size: 0,
+                  privacy: 0,
                   location: "",
                   summary: "",
-                  overall_rating: ""
+                  overall_rating: 0
                 },
                 restroom: [],
         errors: []
@@ -87,7 +83,7 @@ var axios = require('axios');
                       cleanliness: this.review.cleanliness,
                       uniqueness: this.review.uniqueness,
                       upkeep: this.review.upkeep,
-                      toliet_paper_quality: this.review.toliet_paper_quality,
+                      toilet_paper_quality: this.review.toilet_paper_quality,
                       amenities: this.review.amenities,
                       accessibility: this.review.accessibility,
                       number_of_stalls: this.review.number_of_stalls,
@@ -105,6 +101,17 @@ var axios = require('axios');
           }).catch(error => {
           this.errors = error.response.data.errors;
           });
+      },
+      totalRatings: function() {
+        var total = parseFloat(this.review.privacy) + parseFloat(this.review.amenities)
+          + parseFloat(this.review.cleanliness) + parseFloat(this.review.uniqueness)
+          + parseFloat(this.review.upkeep) + parseFloat(this.review.toliet_paper_quality)
+          + parseFloat(this.review.accessibility) + parseFloat(this.review.number_of_stalls)
+          + parseFloat(this.review.size);
+        var sum = (total / 9);
+        console.log(total);
+          
+        this.review.overall_rating = sum;
       }
     }
   }
