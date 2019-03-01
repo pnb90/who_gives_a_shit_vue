@@ -22,7 +22,6 @@
     <div class="container">
       
     <form v-on:submit.prevent="submit()">
-
         <div>
           Name: <input v-model="restroom.name">
         </div>
@@ -30,7 +29,6 @@
         <div>
           Location: <input v-model="restroom.location">
         </div>
-
         <input type="submit" value="Update" class="btn btn-primary">
      </form>
     </div>
