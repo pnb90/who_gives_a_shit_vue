@@ -9,8 +9,6 @@
           <router-link v-bind:to="'/restrooms/' + restroom.id">
             <div class="card">
               <h2 class="card-title"> {{ restroom.location }}</h2>
-              <!-- <star-rating v-on:="" read-only></star-rating> -->
-
             </div>
           </router-link>
         </div>

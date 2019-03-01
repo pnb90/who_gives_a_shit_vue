@@ -55,31 +55,6 @@
             this.$router.push("/");
           });
       }
-      // totalRatings: function() {
-      //   var sum = 0;
-      //   var ratingArray = Object.values(this.review);
-      //   // ratingArray.forEach(function(number) {
-      //   //   sum += number;
-      //   //   console.log(number);
-      //   // });
-      //   return s
-      // }
     }
   }
 </script>
-
-<!-- t.integer "cleanliness"
-t.integer "uniqueness"
-t.integer "upkeep"
-t.integer "toilet_paper_quality"
-t.integer "amenities"
-t.integer "accessibility"
-t.integer "number_of_stalls"
-t.integer "size"
-t.integer "privacy"
-t.integer "overall_rating"
-t.text "summary"
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
-t.integer "restroom_id"
-t.integer "user_id" -->
