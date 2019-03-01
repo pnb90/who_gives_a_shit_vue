@@ -9,6 +9,8 @@
           <router-link v-bind:to="'/restrooms/' + restroom.id">
             <div class="card">
               <h2 class="card-title"> {{ restroom.location }}</h2>
+              <!-- <star-rating v-on:="" read-only></star-rating> -->
+
             </div>
           </router-link>
         </div>
@@ -26,7 +28,10 @@ export default {
   data: function() {
     return {
       restrooms: [],
-      currentRestroom: {}
+      currentRestroom: {},
+      reviews: [{
+              overall_rating: 5
+              }]
     };
   },
   created: function() { 
@@ -35,7 +40,11 @@ export default {
         this.restrooms = response.data;
       });
   },
-  methods: {},
+  methods: {
+    averageRating: function() {
+      this.restrooms.reviews
+    }
+  },
   mounted: function() {
     var chicago = {lat: 41.891486, lng: -87.630833};
 
