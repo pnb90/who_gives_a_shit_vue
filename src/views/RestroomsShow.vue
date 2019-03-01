@@ -2,6 +2,7 @@
   <div class="restrooms-show">
     <div id="map"></div>
     <h1>{{ restroom.location }}</h1>
+    <div> number of reviews:<span class="countReviews"></span></div>
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
@@ -73,6 +74,7 @@
         restroom: {
                     id: "",
                     location: "",
+                    reviews_count: "",     
                     reviews: [{
                               id: "",
                               cleanliness: "",
@@ -85,7 +87,7 @@
                               privacy: "",
                               summary: "",
                               overall_rating: "",
-                              accessibility: ""     
+                              accessibility: ""
                               }]
                   },
         newReviewName: "",
@@ -111,6 +113,13 @@
           this.restroom = response.data;
         });
     },
+
+    function countReviews(review) {
+      var i = 0
+      reviews.forEach(function(review) {
+
+      });
+    }
     methods: {
       destroyRestroom: function() {
         axios.delete("/api/restrooms/" + this.restroom.id)
