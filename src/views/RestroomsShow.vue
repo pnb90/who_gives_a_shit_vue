@@ -2,6 +2,7 @@
   <div class="restrooms-show">
     <div id="map"></div>
     <h1>{{ restroom.location }}</h1>
+    <div>Number of Reviews: {{ restroom.reviews_count }}</div>
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
@@ -48,10 +49,7 @@
           <div>
           Summary: <input type="text" v-model="newReviewSummary">
           </div>
-          <h3>
-          Overall Rating: <input v-model="newReviewOverallRating">
-          </h3>
-          <input type="submit" value="Rate" name="btn btn-success">
+          <input type="submit" v-on:click="totalRatings()" value="Rate" name="btn btn-success">
         </form>
       </div>
     </div>
@@ -73,8 +71,8 @@
         restroom: {
                     id: "",
                     location: "",
+                    reviews_count: "",
                     reviews: [{
-                              id: "",
                               cleanliness: "",
                               uniqueness: "",
                               upkeep: "",
@@ -88,7 +86,6 @@
                               accessibility: ""     
                               }]
                   },
-        newReviewName: "",
         newReviewCleanliness: "",
         newReviewUniqueness: "",
         newReviewUpkeep: "",
@@ -99,6 +96,7 @@
         newReviewSize: "",
         newReviewPrivacy: "",
         newReviewLocation: "",
+        newReviewName: "",
         newReviewSummary: "",
         newReviewOverallRating: "",
         errors: []
@@ -143,7 +141,20 @@
           }).catch(error => {
             this.errors = error.response.data.errors;
           });
+      },
+      totalRatings: function() {
+        var total = parseFloat(this.newReviewPrivacy) + parseFloat(this.newReviewAmenities)
+          + parseFloat(this.newReviewCleanliness) + parseFloat(this.newReviewUniqueness)
+          + parseFloat(this.newReviewUpkeep) + parseFloat(this.newReviewTolietPaperQuality)
+          + parseFloat(this.newReviewAccessibility) + parseFloat(this.newReviewNumberOfStalls)
+          + parseFloat(this.newReviewSize);
+        var sum = (total / 9);
+          
+        this.newReviewOverallRating = sum;
       }
+      // insertStars: function() {
+      //   if (this.)
+      // }
     },
     mounted: function() {
       var chicago = {lat: 41.878, lng: -87.629};

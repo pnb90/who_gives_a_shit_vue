@@ -9,7 +9,7 @@
       <div> size: {{ review.size }}</div>
       <div> privacy: {{ review.privacy }}</div>
       <div> summary: {{ review.summary }}</div>
-      <div> overall_rating: {{ review.overall_rating }}</div>
+      <div v-on:click="totalRatings()"> overall_rating: {{ review.overall_rating }}</div>
       <div> accessibility: {{ review.accessibility }}</div>
       <router-link :to=" '/reviews/' + review.id + '/edit' " class="btn btn-warning">Edit</router-link>
     <button v-on:click="destroyReview()" class="btn btn-danger">Delete</button>
@@ -26,7 +26,6 @@
     data: function() {
       return {
               review: {
-                        id: "",
                         cleanliness: "",
                         uniqueness: "",
                         upkeep: "",
@@ -56,6 +55,15 @@
             this.$router.push("/");
           });
       }
+      // totalRatings: function() {
+      //   var sum = 0;
+      //   var ratingArray = Object.values(this.review);
+      //   // ratingArray.forEach(function(number) {
+      //   //   sum += number;
+      //   //   console.log(number);
+      //   // });
+      //   return s
+      // }
     }
   }
 </script>
