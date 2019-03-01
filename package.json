@@ -12,6 +12,7 @@
     "vue-dynamic-star-rating": "^1.0.7",
     "vue-router": "^3.0.1",
     "vue-star-rating": "^1.6.1",
+    "vue2-filters": "^0.5.0",
     "vue2-google-maps": "^0.10.6"
   },
   "devDependencies": {

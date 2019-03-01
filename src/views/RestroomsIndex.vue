@@ -19,10 +19,22 @@
     </div>
     <div id="map"></div>
     <h1> All Restrooms </h1>
+
+    <div>
+      Filter Location: <input v-model="locationFilter" list="locations">
+
+      <datalist id="locations">
+        <option v-for="restroom in restrooms">{{restroom.title}}</option>
+
+      </datalist>
+
+    </div> 
+    
+
     <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
     <p></p>
       <div class="row">
-        <div class="col-md-4" v-for="restroom in restrooms">
+        <div class="col-md-4" v-for="restroom in filterBy(restrooms, locationFilter, 'location')">
           <router-link v-bind:to="'/restrooms/' + restroom.id">
             <div class="card">
               <h2 class="card-title"> {{ restroom.location }}</h2>
@@ -42,6 +54,7 @@
 
 <script>
 var axios = require("axios");
+import Vue2Filters from "vue2-filters";
 
 export default {
   data: function() {
@@ -50,7 +63,8 @@ export default {
       currentRestroom: {},
       reviews: [{
               overall_rating: 5
-              }]
+              }],
+      locationFilter: ''
     };
   },
   created: function() { 
@@ -90,8 +104,9 @@ export default {
       });
       marker.addListener('click', function() {
         infowindow.open(map, marker);
-      });
+      }); 
     });
-  }
+  },
+  mixins: [Vue2Filters.mixin]
 };
 </script>
