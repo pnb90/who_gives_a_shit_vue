@@ -46,7 +46,8 @@
           console.log(response.data);
           this.review = response.data;
         });
-    },
+    }, 
+
     methods: {
       destroyReview: function() {
         axios.delete("/api/reviews/" + this.review.id)

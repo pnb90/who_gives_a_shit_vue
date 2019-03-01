@@ -1,5 +1,22 @@
 <template>
   <div class="restrooms-index">
+    <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <div>
+          <router-link to="/">Home</router-link> 
+          </div>
+          <div>
+          <router-link to="/about">About</router-link>
+        </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
     <div id="map"></div>
     <h1> All Restrooms </h1>
     <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
@@ -14,6 +31,10 @@
         </div>
       </div>
   </div>
+
+
+
+
 </template>
 
 <style>
