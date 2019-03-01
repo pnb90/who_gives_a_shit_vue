@@ -23,6 +23,9 @@
     </div>
     <div id="map"></div>
 
+    <h1>{{ restroom.name }}</h1>
+    <h1>{{ restroom.location }}</h1>
+
     <h1 class="d-flex justify-content-center header-text">{{ restroom.location }}</h1>
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
@@ -168,6 +171,7 @@
                       size: this.newReviewSize,
                       privacy: this.newReviewPrivacy,
                       location: this.newReviewLocation,
+                      name: this.newReviewName,
                       summary: this.newReviewSummary,
                       overall_rating: this.newReviewOverallRating,
                       restroom_id: this.restroom.id

@@ -22,8 +22,13 @@
     <div class="container">
       <form v-on:submit.prevent="submit()">
         <div>
+        Name: <input v-model="newRestroomName">
+        </div>
+
+        <div>
         Address: <input v-model="newRestroomLocation">
         </div>
+
         <input type="submit" value="Submit" name="btn btn-success">
       </form>
     </div>
@@ -40,6 +45,7 @@ export default {
   data: function() {
     return {
       newRestroomLocation: "",
+      newRestroomName: "",
       errors: []
     };
   },
@@ -48,7 +54,8 @@ created: function() {},
     submit: function() {
       console.log("Rating flushed");
       var params = {
-                    location: this.newRestroomLocation
+                    location: this.newRestroomLocation,
+                    name: this.newRestroomName
                     };
       axios.post("/api/restrooms", params)
         .then(response => {

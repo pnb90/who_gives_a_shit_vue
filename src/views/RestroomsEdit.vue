@@ -23,6 +23,10 @@
       
     <form v-on:submit.prevent="submit()">
         <div>
+          Name: <input v-model="restroom.name">
+        </div>
+
+        <div>
           Location: <input v-model="restroom.location">
         </div>
         <input type="submit" value="Update" class="btn btn-primary">
@@ -42,7 +46,8 @@ var axios = require('axios');
     data: function() {
       return {
         restroom: {
-                  location: ""
+                  location: "",
+                  name: ""
                 },
         errors: []
       };
@@ -57,7 +62,8 @@ var axios = require('axios');
     methods: {
       submit: function() {
         var params = {
-                      location: this.restroom.location
+                      location: this.restroom.location,
+                      name: this.restroom.name
                       };
 
 
