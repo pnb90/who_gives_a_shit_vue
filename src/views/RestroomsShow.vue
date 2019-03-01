@@ -1,8 +1,27 @@
 <template>
   <div class="restrooms-show">
+    <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <div>
+            <router-link to="/">Home</router-link>
+          </div>
+          <router-link to="/logout">Log Out</router-link>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
     <div id="map"></div>
     <h1>{{ restroom.location }}</h1>
+
+    <div> number of reviews:<span class="countReviews"></span></div>
+
     <div>Number of Reviews: {{ restroom.reviews_count }}</div>
+
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
@@ -71,7 +90,7 @@
       return {
         restroom: {
                     id: "",
-                    location: "",
+                    reviews_count: "",     
                     reviews_count: "",
                     reviews: [{
                               cleanliness: "",
@@ -83,6 +102,8 @@
                               size: "",
                               privacy: "",
                               summary: "",
+                              overall_rating: "",
+                              accessibility: "",
                               overall_rating: 0,
                               accessibility: ""     
                               }]
