@@ -11,6 +11,3 @@
 
 <style>
 </style>
-
-<script>
-</script>
