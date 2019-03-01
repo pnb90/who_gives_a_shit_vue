@@ -85,7 +85,7 @@ export default {
       });
       marker.addListener('click', function() {
         infowindow.open(map, marker);
-      });
+      }); 
     });
   },
   mixins: [Vue2Filters.mixin]
