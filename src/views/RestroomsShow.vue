@@ -22,61 +22,71 @@
       </nav>
     </div>
     <div id="map"></div>
-    <h1>{{ restroom.location }}</h1>
 
-    <!-- <div> number of reviews:<span class="countReviews"></span></div> -->
-
-    <!-- <div>Number of Reviews: {{ restroom.reviews_count }}</div> -->
-
+    <h1 class="d-flex justify-content-center header-text">{{ restroom.location }}</h1>
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
             <star-rating v-model="review.overall_rating" read-only></star-rating>
           </router-link>
-          <!-- <star-rating></star-rating> -->
         </div>
     </div>
     <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
     <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
     <div class="reviews-new">
-      <h1>New Review</h1>
       <ul>
         <li v-for="error in errors">{{ error }}</li>
       </ul>
-      <div class="container">
-        <form v-on:submit.prevent="submit()">
-          <div>
-          Cleanliness: <star-rating v-bind:star-size="25" v-model="newReviewCleanliness"></star-rating>
+      <div class="accordion d-flex justify-content-center" id="accordionExample275">
+        <div class="card z-depth-0 bordered">
+          <div class="card-header" id="headingOne2">
+            <h5 class="mb-0">
+              <button class="btn btn-link d-flex justify-content-center" type="button" data-toggle="collapse" data-target="#collapseOne2"
+                aria-expanded="true" aria-controls="collapseOne2">
+                Leave a Review!
+              </button>
+            </h5>
           </div>
-          <div>
-          Uniqueness: <star-rating v-bind:star-size="25" v-model="newReviewUniqueness"></star-rating> 
+          <div id="collapseOne2" class="collapse" aria-labelledby="headingOne2" data-parent="#accordionExample275">
+            <div class="card-body">
+              <div class="container">
+                <form v-on:submit.prevent="submit()">
+                  <div>
+                  Cleanliness: <star-rating v-bind:star-size="25" v-model="newReviewCleanliness"></star-rating>
+                  </div>
+                  <div>
+                  Uniqueness: <star-rating v-bind:star-size="25" v-model="newReviewUniqueness"></star-rating> 
+                  </div>
+                  <div> 
+                  Upkeep: <star-rating v-bind:star-size="25" v-model="newReviewUpkeep"></star-rating> 
+                  </div>
+                  <div>
+                  Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="newReviewTolietPaperQuality"></star-rating> 
+                  </div>
+                  <div>
+                  Amenities: <star-rating v-bind:star-size="25" v-model="newReviewAmenities"></star-rating> 
+                  </div>
+                  <div>
+                  Accessibility: <star-rating v-bind:star-size="25" v-model="newReviewAccessibility"></star-rating> 
+                  </div>
+                  <div>
+                  Number of Stalls: <star-rating v-bind:star-size="25" v-model="newReviewNumberOfStalls"></star-rating> 
+                  </div>
+                  <div>
+                  Size: <star-rating v-bind:star-size="25" v-model="newReviewSize"></star-rating> 
+                  </div>
+                  <div>
+                  Privacy: <star-rating v-bind:star-size="25" v-model="newReviewPrivacy"></star-rating> 
+                  </div>
+                  <div>
+                  Summary: <input type="text" v-model="newReviewSummary">
+                  </div>
+                  <input type="submit" v-on:click="totalRatings()" value="Rate" name="btn btn-success">
+                </form>
+              </div>
+            </div>
           </div>
-          <div> 
-          Upkeep: <star-rating v-bind:star-size="25" v-model="newReviewUpkeep"></star-rating> 
-          </div>
-          <div>
-          Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="newReviewTolietPaperQuality"></star-rating> 
-          </div>
-          <div>
-          Amenities: <star-rating v-bind:star-size="25" v-model="newReviewAmenities"></star-rating> 
-          </div>
-          <div>
-          Accessibility: <star-rating v-bind:star-size="25" v-model="newReviewAccessibility"></star-rating> 
-          </div>
-          <div>
-          Number of Stalls: <star-rating v-bind:star-size="25" v-model="newReviewNumberOfStalls"></star-rating> 
-          </div>
-          <div>
-          Size: <star-rating v-bind:star-size="25" v-model="newReviewSize"></star-rating> 
-          </div>
-          <div>
-          Privacy: <star-rating v-bind:star-size="25" v-model="newReviewPrivacy"></star-rating> 
-          </div>
-          <div>
-          Summary: <input type="text" v-model="newReviewSummary">
-          </div>
-          <input type="submit" v-on:click="totalRatings()" value="Rate" name="btn btn-success">
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -180,9 +190,6 @@
           
         this.newReviewOverallRating = sum;
       }
-      // insertStars: function() {
-      //   if (this.)
-      // }
     },
     mounted: function() {
       var chicago = {lat: 41.878, lng: -87.629};

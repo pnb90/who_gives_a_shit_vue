@@ -24,7 +24,7 @@
       </nav>
     </div>
     <div id="map"></div>
-    <h1> All Restrooms </h1>
+    <h1 class="d-flex justify-content-center header-text"> All Restrooms </h1>
 
     
 
@@ -35,8 +35,6 @@
           <router-link v-bind:to="'/restrooms/' + restroom.id">
             <div class="card">
               <h2 class="card-title"> {{ restroom.location }}</h2>
-              <!-- <star-rating v-on:="" read-only></star-rating> -->
-
             </div>
           </router-link>
         </div>

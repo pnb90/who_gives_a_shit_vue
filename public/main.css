@@ -3,11 +3,10 @@ body {
   /*font-family: "Book Antiqua",Palatino,"Palatino Linotype","Palatino LT STD",Georgia,serif;*/
 }
 
-.container {
-/*  width: 40%;
-  background-color: gray;
-  border-radius: 15px 50px;
-  padding: 10px;*/
+.header-text {
+  background-color: rgb(52, 58, 64);
+  color: white;
+  padding: 40;
 }
 
 #map {

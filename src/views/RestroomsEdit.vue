@@ -22,42 +22,9 @@
     <div class="container">
       
     <form v-on:submit.prevent="submit()">
-<!--         <div>
-          Cleanliness: <input v-model="restroom.Cleanliness">
-        </div>
-        <div>
-          Uniqueness: <input v-model="restroom.uniqueness">
-        </div>
-        <div>
-          Upkeep: <input v-model="restroom.upkeep">
-        </div>
-        <div>
-          Toliet_paper_quality: <input v-model="restroom.toliet_paper_quality">
-        </div>
-        <div>
-          Amenities: <input v-model="restroom.amenities">
-        </div>
-        <div>
-          Accessibility: <input v-model="restroom.accessibility">
-        </div>
-        <div>
-          Number of Stalls: <input v-model="restroom.number_of_stalls">
-        </div>
-        <div>
-          Size: <input v-model="restroom.size">
-        </div>
-        <div>
-          Privacy: <input v-model="restroom.privacy">
-        </div> -->
         <div>
           Location: <input v-model="restroom.location">
         </div>
-<!--         <div>
-          Summary: <input v-model="restroom.summary"> -->
-<!--         </div>
-        <div>
-          Overall Rating: <input v-model="restroom.overall_rating">
-        </div> -->
         <input type="submit" value="Update" class="btn btn-primary">
      </form>
     </div>
