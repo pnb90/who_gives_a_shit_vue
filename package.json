@@ -9,7 +9,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "vue": "^2.6.6",
+    "vue-dynamic-star-rating": "^1.0.7",
     "vue-router": "^3.0.1",
+    "vue-star-rating": "^1.6.1",
     "vue2-google-maps": "^0.10.6"
   },
   "devDependencies": {

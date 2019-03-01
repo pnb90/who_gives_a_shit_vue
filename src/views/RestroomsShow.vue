@@ -1,13 +1,33 @@
 <template>
   <div class="restrooms-show">
+    <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <div>
+            <router-link to="/">Home</router-link>
+          </div>
+          <router-link to="/logout">Log Out</router-link>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
     <div id="map"></div>
     <h1>{{ restroom.location }}</h1>
+
     <div> number of reviews:<span class="countReviews"></span></div>
+
+    <div>Number of Reviews: {{ restroom.reviews_count }}</div>
+
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
-            <div>Rating: {{ review.overall_rating }}</div>
+            <star-rating v-model="review.overall_rating" read-only></star-rating>
           </router-link>
+          <!-- <star-rating></star-rating> -->
         </div>
     </div>
     <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
@@ -20,39 +40,36 @@
       <div class="container">
         <form v-on:submit.prevent="submit()">
           <div>
-          Cleanliness: <input v-model="newReviewCleanliness">
+          Cleanliness: <star-rating v-bind:star-size="25" v-model="newReviewCleanliness"></star-rating>
           </div>
           <div>
-          Uniqueness: <input v-model="newReviewUniqueness">
+          Uniqueness: <star-rating v-bind:star-size="25" v-model="newReviewUniqueness"></star-rating> 
           </div>
           <div> 
-          Upkeep: <input v-model="newReviewUpkeep">
+          Upkeep: <star-rating v-bind:star-size="25" v-model="newReviewUpkeep"></star-rating> 
           </div>
           <div>
-          Toliet Paper Quality: <input v-model="newReviewTolietPaperQuality">
+          Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="newReviewTolietPaperQuality"></star-rating> 
           </div>
           <div>
-          Amenities: <input v-model="newReviewAmenities">
+          Amenities: <star-rating v-bind:star-size="25" v-model="newReviewAmenities"></star-rating> 
           </div>
           <div>
-          Accessibility: <input v-model="newReviewAccessibility">
+          Accessibility: <star-rating v-bind:star-size="25" v-model="newReviewAccessibility"></star-rating> 
           </div>
           <div>
-          Number of Stalls: <input v-model="newReviewNumberOfStalls">
+          Number of Stalls: <star-rating v-bind:star-size="25" v-model="newReviewNumberOfStalls"></star-rating> 
           </div>
           <div>
-          Size: <input v-model="newReviewSize">
+          Size: <star-rating v-bind:star-size="25" v-model="newReviewSize"></star-rating> 
           </div>
           <div>
-          Privacy: <input v-model="newReviewPrivacy">
+          Privacy: <star-rating v-bind:star-size="25" v-model="newReviewPrivacy"></star-rating> 
           </div>
           <div>
           Summary: <input type="text" v-model="newReviewSummary">
           </div>
-          <h3>
-          Overall Rating: <input v-model="newReviewOverallRating">
-          </h3>
-          <input type="submit" value="Rate" name="btn btn-success">
+          <input type="submit" v-on:click="totalRatings()" value="Rate" name="btn btn-success">
         </form>
       </div>
     </div>
@@ -73,10 +90,9 @@
       return {
         restroom: {
                     id: "",
-                    location: "",
                     reviews_count: "",     
+                    reviews_count: "",
                     reviews: [{
-                              id: "",
                               cleanliness: "",
                               uniqueness: "",
                               upkeep: "",
@@ -87,22 +103,24 @@
                               privacy: "",
                               summary: "",
                               overall_rating: "",
-                              accessibility: ""
+                              accessibility: "",
+                              overall_rating: 0,
+                              accessibility: ""     
                               }]
                   },
-        newReviewName: "",
-        newReviewCleanliness: "",
-        newReviewUniqueness: "",
-        newReviewUpkeep: "",
-        newReviewTolietPaperQuality: "",
-        newReviewAmenities: "",
-        newReviewAccessibility: "",
-        newReviewNumberOfStalls: "",
-        newReviewSize: "",
-        newReviewPrivacy: "",
+        newReviewCleanliness: 0,
+        newReviewUniqueness: 0,
+        newReviewUpkeep: 0,
+        newReviewTolietPaperQuality: 0,
+        newReviewAmenities: 0,
+        newReviewAccessibility: 0,
+        newReviewNumberOfStalls: 0,
+        newReviewSize: 0,
+        newReviewPrivacy: 0,
         newReviewLocation: "",
+        newReviewName: "",
         newReviewSummary: "",
-        newReviewOverallRating: "",
+        newReviewOverallRating: 0,
         errors: []
         };
       },
@@ -113,13 +131,6 @@
           this.restroom = response.data;
         });
     },
-
-    function countReviews(review) {
-      var i = 0
-      reviews.forEach(function(review) {
-
-      });
-    }
     methods: {
       destroyRestroom: function() {
         axios.delete("/api/restrooms/" + this.restroom.id)
@@ -152,7 +163,20 @@
           }).catch(error => {
             this.errors = error.response.data.errors;
           });
+      },
+      totalRatings: function() {
+        var total = parseFloat(this.newReviewPrivacy) + parseFloat(this.newReviewAmenities)
+          + parseFloat(this.newReviewCleanliness) + parseFloat(this.newReviewUniqueness)
+          + parseFloat(this.newReviewUpkeep) + parseFloat(this.newReviewTolietPaperQuality)
+          + parseFloat(this.newReviewAccessibility) + parseFloat(this.newReviewNumberOfStalls)
+          + parseFloat(this.newReviewSize);
+        var sum = (total / 9);
+          
+        this.newReviewOverallRating = sum;
       }
+      // insertStars: function() {
+      //   if (this.)
+      // }
     },
     mounted: function() {
       var chicago = {lat: 41.878, lng: -87.629};

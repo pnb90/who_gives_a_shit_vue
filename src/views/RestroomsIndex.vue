@@ -1,5 +1,22 @@
 <template>
   <div class="restrooms-index">
+    <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <div>
+          <router-link to="/">Home</router-link> 
+          </div>
+          <div>
+          <router-link to="/about">About</router-link>
+        </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
     <div id="map"></div>
     <h1> All Restrooms </h1>
     <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
@@ -9,11 +26,17 @@
           <router-link v-bind:to="'/restrooms/' + restroom.id">
             <div class="card">
               <h2 class="card-title"> {{ restroom.location }}</h2>
+              <!-- <star-rating v-on:="" read-only></star-rating> -->
+
             </div>
           </router-link>
         </div>
       </div>
   </div>
+
+
+
+
 </template>
 
 <style>
@@ -26,7 +49,10 @@ export default {
   data: function() {
     return {
       restrooms: [],
-      currentRestroom: {}
+      currentRestroom: {},
+      reviews: [{
+              overall_rating: 5
+              }]
     };
   },
   created: function() { 
@@ -35,7 +61,11 @@ export default {
         this.restrooms = response.data;
       });
   },
-  methods: {},
+  methods: {
+    averageRating: function() {
+      this.restrooms.reviews
+    }
+  },
   mounted: function() {
     var chicago = {lat: 41.891486, lng: -87.630833};
 
