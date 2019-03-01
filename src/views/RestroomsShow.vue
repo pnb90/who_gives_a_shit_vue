@@ -16,12 +16,7 @@
       </nav>
     </div>
     <div id="map"></div>
-    <h1>{{ restroom.location }}</h1>
-
-    <div> number of reviews:<span class="countReviews"></span></div>
-
-    <div>Number of Reviews: {{ restroom.reviews_count }}</div>
-
+    <h1 class="d-flex justify-content-center header-text">{{ restroom.location }}</h1>
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
@@ -35,11 +30,11 @@
       <ul>
         <li v-for="error in errors">{{ error }}</li>
       </ul>
-      <div class="accordion" id="accordionExample275">
+      <div class="accordion d-flex justify-content-center" id="accordionExample275">
         <div class="card z-depth-0 bordered">
           <div class="card-header" id="headingOne2">
             <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne2"
+              <button class="btn btn-link d-flex justify-content-center" type="button" data-toggle="collapse" data-target="#collapseOne2"
                 aria-expanded="true" aria-controls="collapseOne2">
                 Leave a Review!
               </button>
@@ -86,91 +81,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
     </div>
   </div>
 
@@ -273,9 +183,6 @@
           
         this.newReviewOverallRating = sum;
       }
-      // insertStars: function() {
-      //   if (this.)
-      // }
     },
     mounted: function() {
       var chicago = {lat: 41.878, lng: -87.629};

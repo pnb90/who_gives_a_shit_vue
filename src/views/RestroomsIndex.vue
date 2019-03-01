@@ -18,7 +18,7 @@
       </nav>
     </div>
     <div id="map"></div>
-    <h1> All Restrooms </h1>
+    <h1 class="d-flex justify-content-center header-text"> All Restrooms </h1>
 
     <div>
       Filter Location: <input v-model="locationFilter" list="locations">
