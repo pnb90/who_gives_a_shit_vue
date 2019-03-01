@@ -16,6 +16,7 @@
       </nav>
     </div>
     <div id="map"></div>
+    <h1>{{ restroom.name }}</h1>
     <h1>{{ restroom.location }}</h1>
 
     <div> number of reviews:<span class="countReviews"></span></div>
@@ -152,6 +153,7 @@
                       size: this.newReviewSize,
                       privacy: this.newReviewPrivacy,
                       location: this.newReviewLocation,
+                      name: this.newReviewName,
                       summary: this.newReviewSummary,
                       overall_rating: this.newReviewOverallRating,
                       restroom_id: this.restroom.id
