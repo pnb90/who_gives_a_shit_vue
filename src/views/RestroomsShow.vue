@@ -7,8 +7,14 @@
             <router-link to="/">Home</router-link>
           </div>
           <router-link to="/logout">Log Out</router-link>
+          <div>
+            Find Location: <input v-model="locationFilter" list="locations">
+          <datalist id="locations">
+            <option v-for="restroom in restrooms">{{restroom.title}}</option>
+          </datalist>
         </div>
-      </div>
+          </div>
+        </div>
       <nav class="navbar navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -18,9 +24,9 @@
     <div id="map"></div>
     <h1>{{ restroom.location }}</h1>
 
-    <div> number of reviews:<span class="countReviews"></span></div>
+    <!-- <div> number of reviews:<span class="countReviews"></span></div> -->
 
-    <div>Number of Reviews: {{ restroom.reviews_count }}</div>
+    <!-- <div>Number of Reviews: {{ restroom.reviews_count }}</div> -->
 
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">

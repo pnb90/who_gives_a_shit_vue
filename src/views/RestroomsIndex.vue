@@ -7,8 +7,14 @@
           <router-link to="/">Home</router-link> 
           </div>
           <div>
-          <router-link to="/about">About</router-link>
-        </div>
+            <router-link to="/logout">Log Out</router-link>
+          <div>
+            Find Location: <input v-model="locationFilter" list="locations">
+          <datalist id="locations">
+            <option v-for="restroom in restrooms">{{restroom.title}}</option>
+          </datalist>
+          </div> 
+          </div>
         </div>
       </div>
       <nav class="navbar navbar-dark bg-dark">
@@ -20,15 +26,6 @@
     <div id="map"></div>
     <h1> All Restrooms </h1>
 
-    <div>
-      Filter Location: <input v-model="locationFilter" list="locations">
-
-      <datalist id="locations">
-        <option v-for="restroom in restrooms">{{restroom.title}}</option>
-
-      </datalist>
-
-    </div> 
     
 
     <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
