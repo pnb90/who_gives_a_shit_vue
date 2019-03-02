@@ -7,10 +7,10 @@ import RestroomsEdit from './views/RestroomsEdit.vue'
 import ReviewsNew from './views/ReviewsNew.vue'
 import ReviewsShow from './views/ReviewsShow.vue'
 import ReviewsEdit from './views/ReviewsEdit.vue'
-import Map from './views/Map.vue'
 import Signup from './views/Signup.vue'
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
+import NavBar from './components/NavBar.vue'
 
 
 Vue.use(Router)
@@ -27,9 +27,11 @@ export default new Router({
     { path: '/reviews/new', name: 'reviews-new', component: ReviewsNew },
     { path: '/reviews/:id', name: 'reviews-show', component: ReviewsShow },
     { path: '/reviews/:id/edit', name: 'reviews-edit', component: ReviewsEdit },
-    { path: '/map', name: 'restrooms-map', component: Map },
     { path: '/signup', name: 'signup', component: Signup },
     { path: '/login', name: 'login', component: Login },
     { path: '/logout', name: 'logout', component: Logout }
-  ]
+  ],
+  components: {
+    NavBar
+  }
 })

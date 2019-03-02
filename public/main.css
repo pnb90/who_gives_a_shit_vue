@@ -1,23 +1,62 @@
 body {
   background-image: url('interlaced.png');
+  height: 100%;
+  margin: 0;
+  padding: 0;
   /*font-family: "Book Antiqua",Palatino,"Palatino Linotype","Palatino LT STD",Georgia,serif;*/
+}
+html {
+  height: 100%;
+}
+
+footer {
+  background-color: rgb(52, 58, 64);
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+}
+
+
+.full-height {
+  height: 100%;
 }
 
 .header-text {
   background-color: rgb(52, 58, 64);
   color: white;
-  padding: 40;
+  padding: 50px;
+  margin: 0px;
 }
 
-#search-bar {
-  text: red;
+#app-name {
+  text-align: center;
+  color: white;
+}
+
+.restroom-content {
+  background-color: rgb(153, 157, 159);
+  padding: 100px;
+  border-style: solid;
+  border-width: 0px 15px 0px 15px;
+  border-color: rgb(52, 58, 64);
+  padding-bottom: 600px;
+}
+
+.restroom-card {
+  padding: 10px;
+  margin: 10px;
 }
 
 #map {
   height: 500px;
 }
-html, body {
+
+#reviews-star {
+align-content: center;
+}
+
+.container {
+  text-align: center;
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
