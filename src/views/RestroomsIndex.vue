@@ -7,13 +7,13 @@
           <router-link to="/">Home</router-link> 
           </div>
           <div>
-            <router-link to="/logout">Log Out</router-link>
+            <router-link to="/signup">Sign Up</router-link>
+          </div>
           <div>
-            Find Location: <input v-model="locationFilter" list="locations">
-          <datalist id="locations">
-            <option v-for="restroom in restrooms">{{restroom.title}}</option>
-          </datalist>
-          </div> 
+            <router-link to="/login">Log In</router-link>
+          </div>
+          <div>
+            <router-link to="/logout">Log Out</router-link>
           </div>
         </div>
       </div>
@@ -21,13 +21,16 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+          <div>
+              Find Location: <input v-model="locationFilter" list="locations">
+            <datalist id="locations">
+              <option v-for="restroom in restrooms">{{restroom.title}}</option>
+            </datalist>
+          </div> 
       </nav>
     </div>
     <div id="map"></div>
     <h1 class="d-flex justify-content-center header-text"> All Restrooms </h1>
-
-    
-
     <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
     <p></p>
       <div class="row">
@@ -40,10 +43,6 @@
         </div>
       </div>
   </div>
-
-
-
-
 </template>
 
 <style>

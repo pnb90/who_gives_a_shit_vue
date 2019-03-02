@@ -7,12 +7,6 @@
             <router-link to="/">Home</router-link>
           </div>
           <router-link to="/logout">Log Out</router-link>
-          <div>
-            Find Location: <input v-model="locationFilter" list="locations">
-          <datalist id="locations">
-            <option v-for="restroom in restrooms">{{restroom.title}}</option>
-          </datalist>
-        </div>
           </div>
         </div>
       <nav class="navbar navbar-dark bg-dark">
@@ -24,8 +18,6 @@
     <div id="map"></div>
 
     <h1>{{ restroom.name }}</h1>
-    <h1>{{ restroom.location }}</h1>
-
     <h1 class="d-flex justify-content-center header-text">{{ restroom.location }}</h1>
     <div class="row">
         <div class="card col-md-3 text-center" v-for="review in restroom.reviews">

@@ -9,6 +9,10 @@ body {
   padding: 40;
 }
 
+#search-bar {
+  text: red;
+}
+
 #map {
   height: 500px;
 }
