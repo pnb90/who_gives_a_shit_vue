@@ -1,49 +1,48 @@
 <template>
   <div class="restrooms-index">
-    <div class="pos-f-t">
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <div>
-          <router-link to="/">Home</router-link> 
-          </div>
-          <div>
-            <router-link to="/logout">Log Out</router-link>
-          <div>
-            Find Location: <input v-model="locationFilter" list="locations">
-          <datalist id="locations">
-            <option v-for="restroom in restrooms">{{restroom.title}}</option>
-          </datalist>
-          </div> 
-          </div>
-        </div>
-      </div>
-      <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-    </div>
     <div id="map"></div>
-    <h1 class="d-flex justify-content-center header-text"> All Restrooms </h1>
-
-    
-
-    <router-link class="btn btn-success" to="/restrooms/new"> Add New Restroom </router-link>
-    <p></p>
-      <div class="row">
-        <div class="col-md-4" v-for="restroom in filterBy(restrooms, locationFilter, 'location')">
+    <h1 class="d-flex justify-content-center header-text"> Reviewed Restrooms </h1>
+    <div class="container restroom-content">
+    <table class="table table-striped table-dark">
+      <thead class="thead-light"> 
+       <tr>
+         <th scope="col" v-on:click="setSortAttribute('id')">ID<span v-if="sortAttribute === 'id'"> *</span></th>
+         <th scope="col" v-on:click="setSortAttribute('name')">Name <span v-if="sortAttribute === 'name'"> *</span></th>
+         <th scope="col" v-on:click="setSortAttribute('location')">Location <span v-if="sortAttribute === 'location'"> *</span></th>
+         <th scope="col" v-on:click="setSortAttribute('prep_time')">Rating <span v-if="sortAttribute === 'prep_time'"> *</span></th>
+       </tr>
+      </thead>
+      <tbody is="transition-group" class="fadeLeftBig-enter-active">
+       <tr v-for="restroom in orderBy(filterBy(restrooms, locationFilter, 'location'), sortAttribute, sortOrder)" v-bind:key="restroom.id">
+         <th scope="row">
+         {{restroom.id}}
+        </th scope="row">
+         <td>
+          {{restroom.name}}
+        </td>
+         <td>
           <router-link v-bind:to="'/restrooms/' + restroom.id">
-            <div class="card">
-              <h2 class="card-title"> {{ restroom.location }}</h2>
-            </div>
-          </router-link>
-        </div>
-      </div>
+          {{restroom.location}}
+        </router-link>
+        </td>
+         <td>
+         <!-- {{recipe.formatted.prep_time}} -->
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    <router-link class="btn btn-success" style="margin: 30px;" to="/restrooms/new"> Add New Restroom </router-link>
+    <span>
+        Find Location: <input v-model="locationFilter" list="locations">
+      <datalist id="locations">
+        <option v-for="restroom in restrooms">{{restroom.title}}</option>
+      </datalist>
+    </span> 
+    </div>
+
+
+
   </div>
-
-
-
-
 </template>
 
 <style>
@@ -61,7 +60,9 @@ export default {
       reviews: [{
               overall_rating: 5
               }],
-      locationFilter: ''
+      locationFilter: '',
+      sortAttribute: 'id',
+      sortOrder: 1
     };
   },
   created: function() { 
@@ -73,6 +74,14 @@ export default {
   methods: {
     averageRating: function() {
       this.restrooms.reviews
+    },
+    setSortAttribute: function(inputAttribute) {
+      if (this.sortAttribute === inputAttribute) {
+        this.sortOrder *= -1;       
+      } else {
+        this.sortAttribute = inputAttribute;
+        this.sortOrder = 1;
+      }
     }
   },
   mounted: function() {

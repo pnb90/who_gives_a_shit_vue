@@ -1,43 +1,47 @@
 <template>
   <div class="reviews-edit">
+    <div class="container">
+      <div class="restroom-content">
     <h1>Edit Review</h1>
     <ul>
       <li v-for="error in errors">{{ error }}</li> 
     </ul>
-    <div class="container">
       <form v-on:submit.prevent="submit()">
         <div>
-        Cleanliness: <star-rating v-bind:star-size="25" v-model="review.cleanliness"></star-rating>
+        Cleanliness: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.cleanliness"></star-rating>
         </div>
         <div>
-        Uniqueness: <star-rating v-bind:star-size="25" v-model="review.uniqueness"></star-rating> 
+        Uniqueness: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.uniqueness"></star-rating> 
         </div>
         <div> 
-        Upkeep: <star-rating v-bind:star-size="25" v-model="review.upkeep"></star-rating> 
+        Upkeep: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.upkeep"></star-rating> 
         </div>
         <div>
-        Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="review.toilet_paper_quality"></star-rating> 
+        Toliet Paper Quality: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.toilet_paper_quality"></star-rating> 
         </div>
         <div>
-        Amenities: <star-rating v-bind:star-size="25" v-model="review.amenities"></star-rating> 
+        Amenities: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.amenities"></star-rating> 
         </div>
         <div>
-        Accessibility: <star-rating v-bind:star-size="25" v-model="review.accessibility"></star-rating> 
+        Accessibility: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.accessibility"></star-rating> 
         </div>
         <div>
-        Number of Stalls: <star-rating v-bind:star-size="25" v-model="review.number_of_stalls"></star-rating> 
+        Number of Stalls: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.number_of_stalls"></star-rating> 
         </div>
         <div>
-        Size: <star-rating v-bind:star-size="25" v-model="review.size"></star-rating> 
+        Size: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.size"></star-rating> 
         </div>
         <div>
-        Privacy: <star-rating v-bind:star-size="25" v-model="review.privacy"></star-rating> 
+        Privacy: <star-rating class="d-flex justify-content-center" v-bind:star-size="25" v-model="review.privacy"></star-rating> 
         </div>
         <div>
-        Summary: <input type="text" v-model="review.summary">
+        Summary: 
+        <input type="text" v-model="review.summary">
         </div>
         <input type="submit" v-on:click="totalRatings()" value="Rate" class="btn btn-primary">
       </form>
+      </div>
+
     </div>
   </div>
 </template>

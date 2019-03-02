@@ -1,41 +1,9 @@
 <template>
   <div class="restrooms-show">
-    <div class="pos-f-t">
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <div>
-            <router-link to="/">Home</router-link>
-          </div>
-          <router-link to="/logout">Log Out</router-link>
-          <div>
-            Find Location: <input v-model="locationFilter" list="locations">
-          <datalist id="locations">
-            <option v-for="restroom in restrooms">{{restroom.title}}</option>
-          </datalist>
-        </div>
-          </div>
-        </div>
-      <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-    </div>
-    <div id="map"></div>
-
-    <h1>{{ restroom.name }}</h1>
-    <h1>{{ restroom.location }}</h1>
-
+    <div id="map"></div>      
     <h1 class="d-flex justify-content-center header-text">{{ restroom.location }}</h1>
-    <div class="row">
-        <div class="card col-md-3 text-center" v-for="review in restroom.reviews">
-          <router-link v-bind:to="'/reviews/' + review.id">
-            <star-rating v-model="review.overall_rating" read-only></star-rating>
-          </router-link>
-        </div>
-    </div>
-    <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
-    <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
+      <router-link :to=" '/restrooms/' + restroom.id + '/edit' " class="btn btn-warning">Edit</router-link>
+      <button v-on:click="destroyRestroom()" class="btn btn-danger">Delete</button>
     <div class="reviews-new">
       <ul>
         <li v-for="error in errors">{{ error }}</li>
@@ -46,7 +14,7 @@
             <h5 class="mb-0">
               <button class="btn btn-link d-flex justify-content-center" type="button" data-toggle="collapse" data-target="#collapseOne2"
                 aria-expanded="true" aria-controls="collapseOne2">
-                Leave a Review!
+                Rate This Restroom!
               </button>
             </h5>
           </div>
@@ -91,6 +59,16 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container" style="height: 500px">
+      
+    <div class="row">
+        <div class="card col-md-3 text-center" id="reviews-star" v-for="review in restroom.reviews">
+          <router-link v-bind:to="'/reviews/' + review.id">
+            <star-rating v-model="review.overall_rating" read-only :show-rating="false"></star-rating>
+          </router-link>
+        </div>
+    </div>
     </div>
   </div>
 

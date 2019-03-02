@@ -1,39 +1,22 @@
 <template>
-  <div class="reviews-show">
-    <div class="pos-f-t">
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <div>
-            <router-link to="/">Home</router-link>
-          </div>
-          <router-link to="/logout">Log Out</router-link>
-          <div>
-            Find Location: <input v-model="locationFilter" list="locations">
-          <datalist id="locations">
-            <option v-for="restroom in restrooms">{{restroom.title}}</option>
-          </datalist>
-        </div>
-          </div>
-        </div>
-      <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-    </div>
-      <div> Cleanliness <star-rating v-model="review.cleanliness" read-only></star-rating></div>
-      <div> Uniqueness <star-rating v-model="review.uniqueness" read-only></star-rating></div>
-      <div> Upkeep <star-rating v-model="review.upkeep" read-only></star-rating></div>
-      <div> Toilet Paper Quality <star-rating v-model="review.toilet_paper_quality" read-only></star-rating></div>
-      <div> Amenities <star-rating v-model="review.amenities" read-only></star-rating></div>
-      <div> Number of Stalls <star-rating v-model="review.number_of_stalls" read-only></star-rating></div>
-      <div> Size <star-rating v-model="review.size" read-only></star-rating></div>
-      <div> Privacy <star-rating v-model="review.privacy" read-only></star-rating></div>
-      <div> Accessibility <star-rating v-model="review.accessibility" read-only></star-rating></div>
-      <div> Overall Rating <star-rating v-model="review.overall_rating" read-only></star-rating></div>
+  <div class="container">
+    <div class="restroom-content">
+      <h2 v-model="review">{{ review.restrooms.location }}</h2>
+      <h3 v-model="review">Rated by {{ review.users.name}}</h3>
+      <div> Cleanliness <star-rating class="d-flex justify-content-center" v-model="review.cleanliness" read-only></star-rating></div>
+      <div> Uniqueness <star-rating class="d-flex justify-content-center" v-model="review.uniqueness" read-only></star-rating></div>
+      <div> Upkeep <star-rating class="d-flex justify-content-center" v-model="review.upkeep" read-only></star-rating></div>
+      <div> Toilet Paper Quality <star-rating class="d-flex justify-content-center" v-model="review.toilet_paper_quality" read-only></star-rating></div>
+      <div> Amenities <star-rating class="d-flex justify-content-center" v-model="review.amenities" read-only></star-rating></div>
+      <div> Number of Stalls <star-rating class="d-flex justify-content-center" v-model="review.number_of_stalls" read-only></star-rating></div>
+      <div> Size <star-rating class="d-flex justify-content-center" v-model="review.size" read-only></star-rating></div>
+      <div> Privacy <star-rating class="d-flex justify-content-center" v-model="review.privacy" read-only></star-rating></div>
+      <div> Accessibility <star-rating class="d-flex justify-content-center" v-model="review.accessibility" read-only></star-rating></div>
+      <div> Overall Rating <star-rating class="d-flex justify-content-center" v-model="review.overall_rating" read-only></star-rating></div>
       <div> Summary: {{ review.summary }}</div>
       <router-link :to=" '/reviews/' + review.id + '/edit' " class="btn btn-warning">Edit</router-link>
     <button v-on:click="destroyReview()" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </template>
 
