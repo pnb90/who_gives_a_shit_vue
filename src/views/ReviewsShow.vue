@@ -12,7 +12,7 @@
       <div> Size <star-rating class="d-flex justify-content-center" v-model="review.size" read-only></star-rating></div>
       <div> Privacy <star-rating class="d-flex justify-content-center" v-model="review.privacy" read-only></star-rating></div>
       <div> Accessibility <star-rating class="d-flex justify-content-center" v-model="review.accessibility" read-only></star-rating></div>
-      <div> Overall Rating <star-rating class="d-flex justify-content-center" v-model="review.overall_rating" read-only></star-rating></div>
+      <div> Overall Rating <star-rating class="d-flex justify-content-center" v-model="review.overall" read-only></star-rating></div>
       <div> Summary: {{ review.summary }}</div>
       <router-link :to=" '/reviews/' + review.id + '/edit' " class="btn btn-warning">Edit</router-link>
     <button v-on:click="destroyReview()" class="btn btn-danger">Delete</button>

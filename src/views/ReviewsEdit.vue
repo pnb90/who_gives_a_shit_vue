@@ -106,17 +106,6 @@ var axios = require('axios');
           this.errors = error.response.data.errors;
           });
       },
-      totalRatings: function() {
-        var total = parseFloat(this.review.privacy) + parseFloat(this.review.amenities)
-          + parseFloat(this.review.cleanliness) + parseFloat(this.review.uniqueness)
-          + parseFloat(this.review.upkeep) + parseFloat(this.review.toliet_paper_quality)
-          + parseFloat(this.review.accessibility) + parseFloat(this.review.number_of_stalls)
-          + parseFloat(this.review.size);
-        var sum = (total / 9);
-        console.log(total);
-          
-        this.review.overall_rating = sum;
-      }
     }
   }
 </script>
