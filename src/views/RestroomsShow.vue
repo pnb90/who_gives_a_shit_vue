@@ -32,7 +32,7 @@
                   Upkeep: <star-rating v-bind:star-size="25" v-model="newReviewUpkeep"></star-rating> 
                   </div>
                   <div>
-                  Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="newReviewTolietPaperQuality"></star-rating> 
+                  Toliet Paper Quality: <star-rating v-bind:star-size="25" v-model="newReviewToiletPaperQuality"></star-rating> 
                   </div>
                   <div>
                   Amenities: <star-rating v-bind:star-size="25" v-model="newReviewAmenities"></star-rating> 
@@ -52,7 +52,7 @@
                   <div>
                   Summary: <input type="text" v-model="newReviewSummary">
                   </div>
-                  <input type="submit" v-on:click="totalRatings()" value="Rate" name="btn btn-success">
+                  <input type="submit" value="Rate" name="btn btn-success" data-toggle="collapse" data-target="#collapseOne2">
                 </form>
               </div>
             </div>
@@ -65,7 +65,7 @@
     <div class="row">
         <div class="card col-md-3 text-center" id="reviews-star" v-for="review in restroom.reviews">
           <router-link v-bind:to="'/reviews/' + review.id">
-            <star-rating v-model="review.overall_rating" read-only :show-rating="false"></star-rating>
+            <star-rating v-model="review.overall" read-only :show-rating="false"></star-rating>
           </router-link>
         </div>
     </div>
@@ -108,7 +108,7 @@
         newReviewCleanliness: 0,
         newReviewUniqueness: 0,
         newReviewUpkeep: 0,
-        newReviewTolietPaperQuality: 0,
+        newReviewToiletPaperQuality: 0,
         newReviewAmenities: 0,
         newReviewAccessibility: 0,
         newReviewNumberOfStalls: 0,
@@ -142,7 +142,7 @@
                       cleanliness: this.newReviewCleanliness,
                       uniqueness: this.newReviewUniqueness,
                       upkeep: this.newReviewUpkeep,
-                      toliet_paper_quality: this.newReviewTolietPaperQuality,
+                      toilet_paper_quality: this.newReviewToiletPaperQuality,
                       amenities: this.newReviewAmenities,
                       accessibility: this.newReviewAccessibility,
                       number_of_stalls: this.newReviewNumberOfStalls,
@@ -161,16 +161,6 @@
           }).catch(error => {
             this.errors = error.response.data.errors;
           });
-      },
-      totalRatings: function() {
-        var total = parseFloat(this.newReviewPrivacy) + parseFloat(this.newReviewAmenities)
-          + parseFloat(this.newReviewCleanliness) + parseFloat(this.newReviewUniqueness)
-          + parseFloat(this.newReviewUpkeep) + parseFloat(this.newReviewTolietPaperQuality)
-          + parseFloat(this.newReviewAccessibility) + parseFloat(this.newReviewNumberOfStalls)
-          + parseFloat(this.newReviewSize);
-        var sum = (total / 9);
-          
-        this.newReviewOverallRating = sum;
       }
     },
     mounted: function() {
@@ -198,3 +188,4 @@
     }
   }
 </script>
+toilet_paper_quality
